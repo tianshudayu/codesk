@@ -1,0 +1,183 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Expires" content="0">
+    <title>Codesk Remote</title>
+    <link rel="stylesheet" href="/static/style.css?v=20260413-align1">
+  </head>
+  <body data-theme="dark">
+    <div class="app-shell">
+      <section id="auth-shell" class="auth-shell">
+        <div class="auth-card">
+          <div class="brand-logo"><svg class="brand-spark" width="32" height="32" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M50 12 C 60 12, 68 18, 72 26 C 84 26, 92 36, 92 48 C 92 58, 86 68, 76 72 C 70 86, 50 88, 40 84 C 28 88, 12 80, 10 64 C 4 60, 4 46, 12 36 C 14 20, 34 10, 50 12 Z" fill="#8A2BE2"/><path d="M38 40 L 48 50 L 38 60 M 55 62 L 68 62" stroke="#FFFFFF" stroke-width="8" stroke-linecap="round" stroke-linejoin="round"/></svg><span class="brand-name">codesk</span></div>
+          <div id="backend-status" class="auth-line">checking backend...</div>
+          <div id="relay-status" class="auth-line muted">detecting route...</div>
+          <div class="pair-row">
+            <input id="pair-code" type="password" inputmode="numeric" maxlength="6" placeholder="pair code" aria-label="Pair code">
+            <button id="pair-button" class="icon-button primary" type="button" aria-label="Connect">-></button>
+          </div>
+          <div id="pair-status" class="auth-line muted">not paired</div>
+        </div>
+      </section>
+
+      <header class="topbar">
+        <div class="topbar-side">
+          <button id="open-library" class="icon-button" type="button" aria-label="Open library">=</button>
+        </div>
+        <button id="topbar-status" class="status-pill" type="button" aria-label="Current thread">codesk remote</button>
+        <div class="topbar-side topbar-actions">
+          <button id="lang-toggle" class="icon-button compact-button" type="button" aria-label="Switch language">中</button>
+          <button id="theme-toggle" class="icon-button compact-button hidden" type="button" aria-label="Switch theme">黑</button>
+          <button id="open-compose" class="icon-button desktop-only" type="button" aria-label="New session">+</button>
+          <button id="open-wall" class="icon-button compact-button" type="button" aria-label="Open inspiration wall">W</button>
+          <button id="open-settings" class="icon-button" type="button" aria-label="Open settings">o</button>
+        </div>
+      </header>
+
+      <div id="overlay" class="overlay"></div>
+
+      <div class="workspace">
+        <aside id="library-panel" class="library-panel">
+          <div class="rail">
+            <div class="library-head">
+              <div id="library-mark" class="rail-mark">threads</div>
+              <button id="library-compose" class="mini-button" type="button">new</button>
+            </div>
+            <div class="rail-block">
+              <div id="live-mark" class="rail-mark">live</div>
+              <div id="live-list" class="nav-list"></div>
+            </div>
+            <div class="rail-block">
+              <div id="recent-mark" class="rail-mark">recent</div>
+              <div id="recent-list" class="nav-list"></div>
+            </div>
+            <details id="history-fold" class="history-fold">
+              <summary id="history-summary">history</summary>
+              <div id="history-list" class="history-list"></div>
+            </details>
+          </div>
+        </aside>
+
+        <main class="main-panel">
+          <section id="empty-view" class="empty-view">
+            <div id="empty-copy" class="empty-copy">Select a live session or thread.</div>
+          </section>
+
+          <section id="wall-view" class="view hidden wall-view"></section>
+
+          <section id="session-view" class="view hidden">
+            <div class="context-bar">
+              <div id="session-context" class="context-copy"></div>
+              <button id="cancel-session" class="icon-button context-action-button" type="button" aria-label="More">⋯</button>
+            </div>
+            <div id="activity-strip" class="activity-strip"></div>
+            <div id="conversation-log" class="conversation-log"></div>
+            <details id="session-debug" class="debug-fold">
+              <summary id="session-debug-summary">debug</summary>
+              <div id="debug-log" class="debug-log"></div>
+            </details>
+            <div id="composer-dock" class="composer-dock">
+              <button id="jump-latest" class="jump-latest hidden" type="button">latest</button>
+              <div id="desktop-approval-strip" class="approval-strip desktop-approval-strip"></div>
+              <div id="approval-strip" class="approval-strip"></div>
+              <div id="attachment-strip" class="attachment-strip"></div>
+              <form id="composer" class="composer">
+                <button id="attach-image" class="attach-button" type="button" aria-label="Attach image">+</button>
+                <input id="image-input" class="hidden-file-input" type="file" accept="image/jpeg,image/png,image/webp" multiple>
+                <textarea id="followup-input" placeholder="continue..." aria-label="Send follow-up"></textarea>
+                <button id="send-followup" class="send-button" type="submit" aria-label="Send">^</button>
+              </form>
+            </div>
+          </section>
+
+          <section id="thread-view" class="view hidden">
+            <div class="context-bar">
+              <div id="thread-context" class="context-copy"></div>
+              <button id="resume-thread" class="icon-button context-action-button" type="button" aria-label="More">⋯</button>
+            </div>
+            <div id="thread-summary" class="thread-summary"></div>
+            <div id="thread-log" class="conversation-log"></div>
+            <details id="thread-debug-fold" class="debug-fold">
+              <summary id="thread-debug-summary">debug</summary>
+              <div id="thread-debug" class="debug-log"></div>
+            </details>
+            <div id="thread-dock" class="thread-dock">
+              <button id="resume-thread-inline" class="thread-resume-button" type="button">resume</button>
+            </div>
+          </section>
+
+        </main>
+      </div>
+
+      <aside id="compose-panel" class="sheet">
+        <div class="sheet-head">
+          <div id="compose-mark" class="sheet-mark">new</div>
+          <button id="close-compose" class="icon-button" type="button" aria-label="Close new session">x</button>
+        </div>
+        <div class="sheet-body">
+          <select id="workspace-select" aria-label="Workspace"></select>
+          <input id="title-input" type="text" placeholder="title (optional)" aria-label="Title">
+          <textarea id="prompt-input" placeholder="start a task..." aria-label="Prompt"></textarea>
+          <button id="create-session" class="sheet-action" type="button">start</button>
+        </div>
+      </aside>
+
+      <aside id="settings-panel" class="sheet">
+        <div class="sheet-head">
+          <div id="settings-mark" class="sheet-mark">status</div>
+          <button id="close-settings" class="icon-button" type="button" aria-label="Close settings">x</button>
+        </div>
+        <div class="sheet-body">
+          <div id="settings-backend" class="status-row">backend</div>
+          <div id="settings-route" class="status-row">route</div>
+          <div id="settings-sync" class="status-row">sync</div>
+          <button id="refresh-all" class="sheet-action subtle" type="button">refresh</button>
+        </div>
+      </aside>
+
+      <aside id="view-actions-panel" class="sheet action-sheet">
+        <div class="sheet-head">
+          <div id="view-actions-mark" class="sheet-mark">actions</div>
+          <button id="close-view-actions" class="icon-button" type="button" aria-label="Close actions">x</button>
+        </div>
+        <div class="sheet-body">
+          <div id="view-actions-title" class="sheet-title">Current View</div>
+          <div id="view-actions-details" class="action-details"></div>
+          <button id="view-actions-primary" class="sheet-action" type="button">action</button>
+        </div>
+      </aside>
+
+      <aside id="reader-panel" class="sheet reader-sheet">
+        <div class="sheet-head">
+          <div id="reader-mark" class="sheet-mark">details</div>
+          <button id="close-reader" class="icon-button" type="button" aria-label="Close reader">x</button>
+        </div>
+        <div class="sheet-body reader-body">
+          <div id="reader-meta" class="status-row">details</div>
+          <div id="reader-content" class="reader-content"></div>
+        </div>
+      </aside>
+
+      <aside id="desktop-approval-panel" class="sheet desktop-approval-panel">
+        <div class="sheet-head">
+          <div id="desktop-approval-mark" class="sheet-mark">desktop approval</div>
+          <button id="close-desktop-approval" class="icon-button" type="button" aria-label="Close desktop approval">x</button>
+        </div>
+        <div class="sheet-body">
+          <div id="desktop-approval-status" class="status-row">desktop approval</div>
+          <div id="desktop-preview-stage" class="desktop-preview-stage">
+            <img id="desktop-preview-image" class="desktop-preview-image hidden" alt="Desktop preview">
+            <div id="desktop-preview-empty" class="desktop-preview-empty">preview unavailable</div>
+          </div>
+        </div>
+      </aside>
+    </div>
+
+    <script defer src="/static/app.js?v=20260414-autoswitch2"></script>
+  </body>
+</html>
+

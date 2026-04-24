@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Codesk</string>
+    <string name="bridge_status_line">cloud · ready</string>
+    <string name="cloud_status_line">云端在线 · 请输入 Windows 客户端上的 6 位配对码</string>
+
+    <string name="unpaired_eyebrow">配对电脑</string>
+    <string name="unpaired_title">输入配对码</string>
+    <string name="unpaired_body">在电脑上打开 Codesk for Windows，输入首页显示的 6 位配对码，连接成功后会直接进入控制页。</string>
+    <string name="pair_code_hint">6 位配对码</string>
+    <string name="pair_go">-&gt;</string>
+    <string name="pair_code_note">首次连接只需要输入一次，后续会自动恢复连接。</string>
+    <string name="pair_code_invalid">配对码无效或已过期。</string>
+    <string name="pairing_in_progress">正在连接电脑…</string>
+    <string name="pair_success">已连接，正在检查电脑状态…</string>
+
+    <string name="offline_eyebrow">电脑状态</string>
+    <string name="offline_title">这台电脑还没准备好</string>
+    <string name="offline_body">请在电脑上保持 Codesk for Windows 运行，并让 Codex Desktop 保持前台。</string>
+
+    <string name="connected_eyebrow">已连接</string>
+    <string name="connected_title">这台电脑已连接</string>
+    <string name="connected_body">Codesk 已连接到这台电脑。你可以直接进入会话，继续当前线程或处理审批。</string>
+
+    <string name="open_codesk">进入 Codesk</string>
+    <string name="refresh_status">刷新状态</string>
+    <string name="disconnect_device">断开这台电脑</string>
+    <string name="disconnecting_device">正在断开连接…</string>
+    <string name="device_disconnected">这台电脑已断开，可以输入新的配对码重新连接。</string>
+    <string name="download_windows">下载 Windows 安装器</string>
+    <string name="download_windows_hint">如果你还没在电脑上安装 Codesk for Windows，请先下载安装器，再回到这里输入配对码。</string>
+
+    <string name="device_missing">未找到可用设备。</string>
+    <string name="device_pairing_expired">当前连接已失效，请重新输入配对码。</string>
+    <string name="device_temporarily_unavailable">这台电脑暂时不可用，请稍后再试。</string>
+    <string name="refreshing_status">正在同步设备状态…</string>
+    <string name="request_failed">请求失败，请稍后重试。</string>
+    <string name="open_link_failed">无法打开链接</string>
+    <string name="download_started">已开始下载</string>
+    <string name="load_failed">加载失败</string>
+    <string name="load_failed_body">请检查网络连接，或稍后重试。</string>
+    <string name="retry">重试</string>
+
+    <string name="device_row_label">设备</string>
+    <string name="device_state_label">状态</string>
+    <string name="device_message_label">说明</string>
+    <string name="device_action_label">建议操作</string>
+    <string name="device_label_default">当前电脑</string>
+</resources>
