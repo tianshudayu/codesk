@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+    <title>远程编程辅助输入层</title>
+    <link rel="stylesheet" href="/static/style.css">
+  </head>
+  <body>
+    <main class="page mobile-layout">
+      <section class="hero card">
+        <h2>手机辅助输入</h2>
+        <p>输入本次会话 PIN，连接后即可实时预览并操作已锁定的电脑窗口。</p>
+        <div id="connection-status" class="status-pill offline">等待输入 PIN</div>
+        <div class="mobile-meta">
+          <div class="mobile-meta-item">
+            <span>当前目标窗口</span>
+            <strong id="window-status">未锁定</strong>
+          </div>
+          <div class="mobile-meta-item">
+            <span>连接方式</span>
+            <strong id="transport-status">未连接</strong>
+          </div>
+          <div class="mobile-meta-item">
+            <span>预览状态</span>
+            <strong id="preview-status">未开始</strong>
+          </div>
+        </div>
+      </section>
+
+      <section class="panel card">
+        <div class="field-row">
+          <input id="pin-input" type="password" inputmode="numeric" maxlength="6" placeholder="请输入 6 位会话 PIN">
+          <button id="connect-button">连接</button>
+        </div>
+        <label class="checkbox-row">
+          <input id="remember-pin" type="checkbox" checked>
+          <span>在当前页面会话中记住 PIN</span>
+        </label>
+        <div id="message-error" class="error" hidden></div>
+      </section>
+
+      <section class="panel card preview-panel">
+        <div class="section-header">
+          <h3>实时预览</h3>
+          <span class="muted">单击切焦点，拖动可选区或拖拽</span>
+        </div>
+        <div id="preview-stage" class="preview-stage">
+          <canvas id="preview-canvas" class="preview-canvas" width="960" height="640"></canvas>
+          <div id="preview-placeholder" class="preview-placeholder">
+            等待预览画面...
+          </div>
+        </div>
+      </section>
+
+      <section class="panel card">
+        <div class="section-header">
+          <h3>发送文本</h3>
+          <span class="muted">适合粘贴代码、命令和提示词</span>
+        </div>
+        <textarea id="text-input" placeholder="在这里输入代码、命令、说明或提示词..."></textarea>
+        <div id="newline-warning" class="warning" hidden>
+          当前文本以换行结尾，发送时会按原样保留。
+        </div>
+        <div class="actions" style="margin-top: 14px;">
+          <button id="send-button">发送到电脑</button>
+        </div>
+      </section>
+
+      <section class="panel card touchpad" id="touchpad">
+        <div class="section-header">
+          <h3>辅助滚动区</h3>
+          <span class="muted">单指上下滑动，按当前窗口中心位置滚动</span>
+        </div>
+        <div class="hint">如果预览区里拖动不方便，可以在这里单独滚动锁定窗口。</div>
+      </section>
+    </main>
+
+    <script type="module" src="/static/remote.js"></script>
+  </body>
+</html>
