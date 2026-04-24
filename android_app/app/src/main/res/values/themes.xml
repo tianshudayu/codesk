@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <style name="Theme.Codesk" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+        <item name="colorPrimary">@color/codesk_accent</item>
+        <item name="colorOnPrimary">@color/codesk_text</item>
+        <item name="colorSecondary">@color/codesk_accent</item>
+        <item name="colorOnSecondary">@color/codesk_text</item>
+        <item name="colorSurface">@color/codesk_panel</item>
+        <item name="colorOnSurface">@color/codesk_text</item>
+        <item name="android:statusBarColor">@color/codesk_bg</item>
+        <item name="android:navigationBarColor">@color/codesk_bg</item>
+        <item name="android:windowBackground">@color/codesk_bg</item>
+        <item name="android:forceDarkAllowed" tools:targetApi="q">false</item>
+    </style>
+</resources>
