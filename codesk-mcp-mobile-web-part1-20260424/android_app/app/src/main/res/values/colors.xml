@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<resources>
-    <color name="codesk_bg">#000000</color>
-    <color name="codesk_panel">#09090B</color>
-    <color name="codesk_text">#FFFFFF</color>
-    <color name="codesk_text_soft">#A1A1AA</color>
-    <color name="codesk_muted">#88909A</color>
-    <color name="codesk_accent">#8A2BE2</color>
-</resources>
